@@ -173,7 +173,7 @@ This project demonstrates:
 
 ### Author
 Khushi Yadav
-Aspirinng Web Developer
+Aspiring Web Developer
 
 ### License
 
