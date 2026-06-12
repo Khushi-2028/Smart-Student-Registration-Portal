@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Student Registration Portal</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Smart Student Registration Portal</h1>
+    <button type="button" id="darkModeBtn">
+Dark Mode
+</button>
+
+    <div class="progress-container">
+        <div id="progressBar"></div>
+    </div>
+
+    <form id="registrationForm">
+
+        <!-- SECTION 1 -->
+        <div class="section active">
+             
+            <h1>Personal Information</h1>
+           
+             <label for="studentname" style="font-weight: bold;">Student Name:</label>
+            <input type="text" id="fullname" placeholder="Full Name" required>
+             
+             <label for="fathername" style="font-weight: bold;">Father Name:</label>
+            <input type="text" id="fathername" placeholder="Father's Name" required>
+            
+             <label for="mothername" style="font-weight: bold;">Mother Name:</label>
+            <input type="text" id="mothername" placeholder="Mother's Name" required>
+
+             <span style="font-weight: bold;"><label>Date of Birth:</label></span>
+            <input type="date" id="dob" required>
+
+
+            <span style="font-weight: bold;"><label>Age:</label></span>
+            <input type="number" id="age" readonly>
+
+<div style="display: flex; align-items: center;  gap: 20px;">
+    
+    <span style="font-weight: bold;">Gender:</span>
+    
+    <div style="display: flex; gap: 15px;">
+        
+        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+            <input type="radio" name="Gender" value="Male"> Male
+        </label>
+        
+        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+            <input type="radio" name="Gender" value="Female"> Female
+        </label>
+        
+    </div>
+</div>
+        <label for="blood group" style="font-weight: bold;">Blood Group:</label>
+            <select>
+                <option>Blood Group</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+            </select>
+
+<div style=" margin-bottom: 20px;">
+<div style="display: flex; flex-direction: column; gap: 8px; 
+max-width: 300px;">
+    <label for="nationality" style="font-weight: bold;">Nationality:</label>
+        <select id="nationality" name="nationality" onchange="toggleSpecifyField()"
+         style="padding: 8px; border: 1px solid #ccc;
+          border-radius: 4px; font-size: 14px;">
+                <option>Nationality</option>
+                <option>Indian</option>
+                <option>Other</option>
+            </select>
+            </div>
+     <div id="specify-container" style="display: none; flex-direction: column;
+         gap: 8px; margin-top: 12px; max-width: 300px;">
+        <label for="specify_nationality" style="font-size: 14px; color: #555;">Please specify:</label>
+        <input type="text" id="specify_nationality" name="specify_nationality" placeholder="Enter your nationality" 
+        style="padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px;">
+    </div>
+    </div>
+<script>
+    function toggleSpecifyField() {
+        var dropdown = document.getElementById("nationality");
+        var specifyContainer = document.getElementById("specify-container");
+        
+        // If 'Other' is selected, show the textbox. Otherwise, hide it.
+        if (dropdown.value === "Other") {
+            specifyContainer.style.display = "flex";
+        } else {
+            specifyContainer.style.display = "none";
+        }
+    }
+</script>
+
+ <div style="display: flex; align-items: center; font-family: Arial, sans-serif; gap: 20px;">
+    
+    <span style="font-weight: bold;">Marital Status:</span>
+    
+    <div style="display: flex; gap: 15px;">
+        
+        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+            <input type="radio" name="marital_status" value="single"> Single
+        </label>
+        
+        <label style="display: flex; align-items: center; gap: 5px; cursor: pointer;">
+            <input type="radio" name="marital_status" value="married"> Married
+        </label>
+        
+    </div>
+</div>
+
+<span style="font-weight: bold;"><label>Profile Photo:</label></span>
+<input type="file" id="photo">
+
+<img id="preview" width="120">
+<div class="navigation-buttons">
+<button type="button" class="nextBtn">
+Next
+</button>
+</div>
+        </div>
+
+       
+
+        <!-- SECTION 2 -->
+
+        <div class="section">
+            <h1>Contact Information</h1>
+            <label style="font-weight: bold;" for="mobile">Mobile Number:</label>
+            <input type="text" id="mobile" inputmode="numeric" maxlength="10"
+            oninput="this.value=this.value.replace(/[^0-9]/g, '');" placeholder="Mobile Number" required>
+             
+            <label style="font-weight: bold;" for="mobile"> Alternate Mobile Number:</label>
+            <input type="text" id="altmobile" inputmode="numeric" maxlength="10"
+             oninput="this.value=this.value.replace(/[^0-9]/g, '');" placeholder="Alternate Mobile" required>
+
+            <label style="font-weight: bold;" for="Email">Email Address:</label>
+            <input type="email" id="email" placeholder="Email Address" required>
+        
+            <label style="font-weight: bold;" for="Email">Alternate Email:</label>
+            <input type="email" placeholder="Alternate Email">
+            
+            <label style="font-weight: bold;" for="Address">Address Line 1:</label>
+            <textarea id="address1" placeholder="Address Line 1"></textarea>
+            <div id="charCount">0 / 200</div>
+            
+            <label style="font-weight: bold;" for="Address">Address Line 2:</label>
+            <textarea placeholder="Address Line 2"></textarea>
+            <div id="charCount">0 / 200</div>
+            
+            <label style="font-weight: bold;" for="City">City:</label>
+            <input type="text" placeholder="City">
+             
+            <label style="font-weight: bold;" for="State">State:</label>
+            <input type="text" placeholder="State">
+             
+            <label style="font-weight: bold;" for="Country">Country:</label>
+            <input type="text" placeholder="Country">
+             
+            <label style="font-weight: bold;" for="Pincode">PIN Code:</label>
+            <input type="text" inputmode="numeric" maxlength="6" id="pin" 
+            oninput="this.value=this.value.replace(/[^0-9]/g, '');" placeholder="PIN Code">
+         
+        <div class="navigation-buttons">
+        <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+       </div>
+
+        <!-- SECTION 3 -->
+
+        <div class="section">
+            <h1>Educational Information</h1>
+
+            <h3>10th Details:</h3>
+            
+            <label style="font-weight: bold;" for="Board Name">Board Name:</label>
+            <input type="text" placeholder="Board Name">
+            <label style="font-weight: bold;" for="School Name">School Name:</label>
+            <input type="text" placeholder="School Name">
+            <label style="font-weight: bold;" for="Passing Year">Passing Year:</label>
+            <input type="text" inputmode="numeric" maxlength="4" id="pin" 
+            oninput="this.value=this.value.replace(/[^0-9]/g, '');" placeholder="Passing Year">
+            <label style="font-weight: bold;" for="Percentage">Percentage:</label>
+            <input type="text" inputmode="numeric" maxlength="9" oninput="this.value=this.value.replace(/[^0-9.%]/g, '');"
+             placeholder="e.g.,95.5% or 75%">
+
+            <h3>12th Details:</h3>
+            
+            <label style="font-weight: bold;" for="Board Name">Board Name:</label>
+            <input type="text" placeholder="Board Name">
+            <label style="font-weight: bold;" for="School Name">School Name:</label>
+            <input type="text" placeholder="School Name">
+            <label style="font-weight: bold;" for="Passing Year">Passing Year:</label>
+            <input type="number" inputmode="numeric" maxlength="4" id="pin" 
+            oninput="this.value=this.value.replace(/[^0-9]/g, '');" placeholder="Passing Year">
+            <label style="font-weight: bold;" for="Percentage">Percentage:</label>
+            <input type="number" inputmode="numeric" maxlength="9" id="pin" 
+            oninput="this.value=this.value.replace(/[^0-9.%]/g, '');" placeholder="e.g.,95.5% or 75%">
+
+            <h3>Graduation Details:</h3>
+             
+            <label style="font-weight: bold;" for="College Name">College Name:</label>
+            <input type="text" placeholder="College Name">
+            <label style="font-weight: bold;" for="University">University:</label>
+            <input type="text" placeholder="University">
+            <label style="font-weight: bold;" for="Degree">Degree:</label>
+            <input type="text" placeholder="Degree">
+            <label style="font-weight: bold;" for="Branch">Branch:</label>
+            <input type="text" placeholder="Branch">
+            <label style="font-weight: bold;" for="CGPA">CGPA/PERCENTAGE:</label>
+            <input type="number" inputmode="decimal" maxlength="7" id="pin" 
+            oninput="this.value=this.value.replace(/[^0-9.%]/g, '');" placeholder="e.g.,9.8 or 95.5%">
+
+        <div class="navigation-buttons">
+        <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+        </div>
+       
+
+        <!-- SECTION 4 -->
+
+        <div class="section">
+            <h1>Course Selection</h1>
+
+            <input type="checkbox"  class="course" value="5000"> Python
+
+            <input type="checkbox" class="course" value="8000"> Data Science
+
+            <input type="checkbox" class="course" value="10000"> Machine Learning/Artificial Learning
+
+            <input type="checkbox" class="course" value="7000"> Full Stack Development
+
+            <input type="checkbox" class="course" value="9000"> Cyber Security
+
+            <input type="checkbox" class="course" value="6000"> Data Analytics
+
+            <input type="checkbox" class="course" value="8500"> Cloud Computing
+
+        <div class="navigation-buttons">
+        <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+        </div>
+
+        
+        <!-- SECTION 5 -->
+
+        <div class="section">
+
+            <h1>Skills Assessment</h1>
+
+            <label>Programming <span id="progValue">5</span></label>
+            <input type="range" min="1" max="10" value="5" id="prog">
+
+            <label>Communication <span id="commValue">5</span></label>
+            <input type="range" min="1" max="10" value="5" id="comm">
+
+            <label>Mathematics</label>
+            <input type="range" min="1" max="10">
+
+            <label>Aptitude</label>
+            <input type="range" min="1" max="10">
+
+            <label>Problem Solving</label>
+            <input type="range" min="1" max="10">
+
+            <label>Teamwork</label>
+            <input type="range" min="1" max="10">
+        
+        <div class="navigation-buttons">
+        <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+        </div>
+
+       
+        <!-- SECTION 6 -->
+
+        <div class="section">
+
+            <h1>Internship Details</h1>
+    <label for="months" style="font-weight: bold;">Duration:</label>
+            <select>
+                <option>1 Month</option>
+                <option>3 Months</option>
+                <option>6 Months</option>
+                <option>12 Months</option>
+            </select>
+<label for="mode" style="font-weight: bold;">Mode:</label>
+            <select>
+                <option>Online</option>
+                <option>Offline</option>
+                <option>Hybrid</option>
+            </select>
+<label for="Location" style="font-weight: bold;">Location:</label>
+            <input type="text" placeholder="Preferred Location">
+
+        <div class="navigation-buttons">
+        <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+        </div>
+       
+
+        <!-- SECTION 7 -->
+
+        <div class="section">
+
+            <h1>Fee Calculator</h1>
+
+            <p>Total Fee: ₹ <span id="fee">0</span></p>
+
+            <p>GST (18%): ₹ <span id="gst">0</span></p>
+
+            <p>Discount: ₹ <span id="discount">0</span></p>
+
+            <h3>Final Amount: ₹ <span id="finalAmount">0</span></h3>
+             
+        <div class="navigation-buttons">
+        <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+        </div>
+        
+        <!-- SECTION 8 -->
+
+        <div class="section">
+
+            <h1>Academic Performance Calculator</h1>
+
+<label>Mathematics:</label>
+<input type="number" class="marks" placeholder="Enter Marks">
+
+<label>Science:</label>
+<input type="number" class="marks" placeholder="Enter Marks">
+
+<label>English:</label>
+<input type="number" class="marks" placeholder="Enter Marks">
+
+<label>Computer Science:</label>
+<input type="number" class="marks" placeholder="Enter Marks">
+
+<label>Social Studies:</label>
+<input type="number" class="marks" placeholder="Enter Marks">
+
+
+            <button type="button" onclick="calculateGrade()">Calculate</button>
+
+            <p>Total : <span id="total"></span></p>
+            <p>Percentage : <span id="percentage"></span></p>
+            <p>Grade : <span id="grade"></span></p>
+            
+        <div class="navigation-buttons">
+        <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+        </div>
+       
+
+        <!-- SECTION 9 -->
+
+        <div class="section" style="font-family: Arial, sans-serif; max-width: 300px; padding: 15px;">
+
+    <h1>Password Creation</h1>
+
+    <div style="margin-bottom: 10px;">
+        <input type="password" id="password" placeholder="Password" oninput="checkPasswordStrength()" style="width: 100%; padding: 8px; box-sizing: border-box;">
+    </div>
+
+    <div style="margin-bottom: 15px;">
+        <div style="background-color: #e0e0e0; height: 8px; width: 100%; border-radius: 4px; overflow: hidden;">
+            <div id="strength-bar" style="height: 100%; width: 0%; transition: width 0.3s ease, background-color 0.3s ease;"></div>
+        </div>
+        <span id="strength-text" style="font-size: 12px; font-weight: bold; margin-top: 4px; display: inline-block;"></span>
+    </div>
+
+    <div style="margin-bottom: 5px;">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password" oninput="validateMatch()" style="width: 100%; padding: 8px; box-sizing: border-box;">
+    </div>
+    <span id="match-text" style="font-size: 12px; font-weight: bold; display: block; margin-bottom: 15px;"></span>
+
+    <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 15px;">
+        <input type="checkbox" id="togglePassword" onclick="togglePasswordVisibility()" style="cursor: pointer;">
+        <label for="togglePassword" style="font-size: 14px; cursor: pointer; user-select: none;">Show Passwords</label>
+    </div>
+      
+    <div class="navigation-buttons">
+    <button type="button" class="prevBtn">
+         Previous
+        </button>
+
+        <button type="button" class="nextBtn">
+         Next
+        </button>
+        </div>
+</div>
+
+<script>
+// Function to show/hide password characters
+function togglePasswordVisibility() {
+    const passwordInput = document.getElementById("password");
+    const confirmInput = document.getElementById("confirmPassword");
+    const toggleCheckbox = document.getElementById("togglePassword");
+    
+    // Switch between 'password' and 'text' types
+    if (toggleCheckbox.checked) {
+        passwordInput.type = "text";
+        confirmInput.type = "text";
+    } else {
+        passwordInput.type = "password";
+        confirmInput.type = "password";
+    }
+}
+
+// Function to calculate password strength
+function checkPasswordStrength() {
+    const password = document.getElementById("password").value;
+    const strengthBar = document.getElementById("strength-bar");
+    const strengthText = document.getElementById("strength-text");
+
+    let passedRules = 0;
+
+    // Validation Rules
+    if (password.length >= 8) passedRules++;
+    if (/[A-Z]/.test(password)) passedRules++;
+    if (/[a-z]/.test(password)) passedRules++;
+    if (/[0-9]/.test(password)) passedRules++;
+    if (/[^A-Za-z0-9]/.test(password)) passedRules++; // Special Character
+
+    // Reset if empty
+    if (password.length === 0) {
+        strengthBar.style.width = "0%";
+        strengthText.innerText = "";
+        validateMatch();
+        return;
+    }
+
+    // Determine Strength
+    if (passedRules <= 2) {
+        strengthBar.style.width = "33%";
+        strengthBar.style.backgroundColor = "#ff4d4d"; // Red
+        strengthText.innerText = "Weak";
+        strengthText.style.color = "#ff4d4d";
+    } else if (passedRules <= 4) {
+        strengthBar.style.width = "66%";
+        strengthBar.style.backgroundColor = "#ffa500"; // Orange
+        strengthText.innerText = "Medium";
+        strengthText.style.color = "#ffa500";
+    } else if (passedRules === 5) {
+        strengthBar.style.width = "100%";
+        strengthBar.style.backgroundColor = "#2ecc71"; // Green
+        strengthText.innerText = "Strong";
+        strengthText.style.color = "#2ecc71";
+    }
+
+}
+</script>
+
+        <!-- SECTION 10 -->
+
+     <div class="section" style="display:flex;
+     flex-direction:column; justify-content:center;
+      align-items:center; gap:8px; margin-top:15px; width:100%;">
+
+            <input type="checkbox" id="terms" 
+            style="transform: scale(1.2); cursor: pointer;">
+           <label for="terms" style="cursor:pointer; 
+           text-align:center;">I agree to Terms & Conditions</label>
+
+        </div>
+<div id="summaryPage" style="display:none;">
+
+<h2>Registration Summary</h2>
+
+<p><b>Name:</b>
+<span id="summaryName"></span></p>
+
+<p><b>Email:</b>
+<span id="summaryEmail"></span></p>
+
+<p><b>Mobile:</b>
+<span id="summaryMobile"></span></p>
+
+<p><b>Fee:</b>
+₹ <span id="summaryFee"></span></p>
+
+</div>
+<div class="navigation-buttons">
+<button type="button"
+onclick="showSummary()">
+Preview Summary
+</button>
+<button type="button" class="prevBtn">
+Previous
+</button>
+<button type="submit" style="display: block; 
+ margin: 20px auto 0 auto; padding: 10px 20px;" >Submit Registration</button>
+        
+</form>
+</div>
+</div>
+
+
+<script src="script.js"></script>
+
+</body>
+</html>
